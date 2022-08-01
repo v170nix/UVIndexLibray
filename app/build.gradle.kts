@@ -80,6 +80,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
 
+group = "ui.index.lib"
+version = "1.0.2"
+
 publishing {
     repositories {
         maven {
