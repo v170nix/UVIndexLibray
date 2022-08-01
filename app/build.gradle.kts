@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     kotlin("plugin.serialization") version "1.6.21"
+    `maven-publish`
 }
 
 android {
@@ -77,4 +78,12 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri("file://${System.getenv("HOME")}/.m2/repository")
+        }
+    }
 }
