@@ -41,6 +41,14 @@ android {
     }
 
     namespace = "ui.index.lib"
+
+    publishing {
+        singleVariant("release") {
+//            withSourcesJar()
+//            withJavadocJar()
+        }
+    }
+
 //    buildFeatures {
 //        compose = true
 //    }
@@ -81,12 +89,24 @@ dependencies {
 }
 
 group = "ui.index.lib"
-version = "1.0.2"
+version = "1.0.4"
 
-publishing {
-    repositories {
-        maven {
-            url = uri("file://${System.getenv("HOME")}/.m2/repository")
+
+
+afterEvaluate {
+    publishing {
+
+        publications {
+            create<MavenPublication>("ReleasePublication") {
+                from(components["release"])
+                artifactId = "lib"
+            }
         }
+
+//    repositories {
+//        maven {
+//            url = uri("file://${System.getenv("HOME")}/.m2/repository")
+//        }
+//    }
     }
 }

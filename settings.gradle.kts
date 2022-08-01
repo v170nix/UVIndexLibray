@@ -8,5 +8,5 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "UVIndexLibray"
+rootProject.name = "UVIndexLibrary"
 include(":app")
