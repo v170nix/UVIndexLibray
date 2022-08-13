@@ -11,7 +11,7 @@ import uv.index.lib.data.UVIndexData
 import uv.index.lib.data.UVIndexRepository
 import java.time.LocalDate
 
-internal class UVIndexRemoveUpdateUseCase(
+class UVIndexRemoteUpdateUseCase(
     private val repository: UVIndexRepository,
     private val scope: CoroutineScope
 ) {

@@ -66,7 +66,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
     implementation("androidx.core:core-ktx:1.8.0")
-    implementation("androidx.appcompat:appcompat:1.4.2")
+    implementation("androidx.appcompat:appcompat:1.5.0")
     implementation("com.google.android.material:material:1.6.1")
 
     implementation("com.github.v170nix:arwix-common-library:0.4.0")
@@ -89,7 +89,7 @@ dependencies {
 }
 
 group = "ui.index.lib"
-version = "1.0.4"
+version = "1.0.5"
 
 
 
@@ -99,7 +99,7 @@ afterEvaluate {
         publications {
             create<MavenPublication>("ReleasePublication") {
                 from(components["release"])
-                artifactId = "lib"
+                artifactId = "uv-index-library"
             }
         }
 
