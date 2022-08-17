@@ -67,7 +67,7 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.5.0")
-    implementation("com.google.android.material:material:1.6.1")
+//    implementation("com.google.android.material:material:1.6.1")
 
     implementation("com.github.v170nix:arwix-common-library:0.4.0")
 
@@ -75,7 +75,7 @@ dependencies {
     kapt("androidx.room:room-compiler:2.5.0-alpha02")
     implementation("androidx.room:room-ktx:2.5.0-alpha02")
 
-    implementation("androidx.work:work-runtime-ktx:2.7.1")
+//    implementation("androidx.work:work-runtime-ktx:2.7.1")
 
     implementation("io.ktor:ktor-client-core:2.0.3")
     implementation("io.ktor:ktor-client-okhttp:2.0.3")
@@ -89,7 +89,7 @@ dependencies {
 }
 
 group = "ui.index.lib"
-version = "1.0.5"
+version = "1.0.6"
 
 
 
