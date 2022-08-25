@@ -2,6 +2,8 @@
 
 package uv.index.lib.data
 
+import kotlin.math.roundToInt
+
 // https://dermnetnz.org/topics/sunburn
 
 enum class UVSkinType(
@@ -28,17 +30,25 @@ enum class UVSkinType(
     }
 
     fun getIntegralMinTimeToBurnInMins(list: List<UVIndexData>, currentHour: Double): Double? {
-        return getIntegralTimeToBurnInMins(this.minMaxMed.first, list, currentHour)
+        return getIntegralTimeInMins(this.minMaxMed.first, list, currentHour)
     }
 
     fun getIntegralMaxTimeToBurnInMins(list: List<UVIndexData>, currentHour: Double): Double? {
-        return getIntegralTimeToBurnInMins(this.minMaxMed.second, list, currentHour)
+        return getIntegralTimeInMins(this.minMaxMed.second, list, currentHour)
+    }
+
+    fun getIntegralMinTimeToVitaminDInMins(list: List<UVIndexData>, currentHour: Double): Double? {
+        return getIntegralTimeInMins((this.minMaxMed.first * 0.3).roundToInt(), list, currentHour)
+    }
+
+    fun getIntegralMaxTimeToVitaminDInMins(list: List<UVIndexData>, currentHour: Double): Double? {
+        return getIntegralTimeInMins((this.minMaxMed.second * 0.3).roundToInt(), list, currentHour)
     }
 
     private companion object {
         private const val factor = 1e-4 / (1 / 40.0 * 1e-5) / 60.0
 
-        private fun getIntegralTimeToBurnInMins(
+        private fun getIntegralTimeInMins(
             skinJ: Int,
             list: List<UVIndexData>,
             currentHour: Double
