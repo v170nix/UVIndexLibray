@@ -11,6 +11,7 @@ plugins {
 android {
 
     compileSdk = 33
+    buildToolsVersion = "33.0.1"
 
     defaultConfig {
         minSdk = 23
@@ -98,7 +99,7 @@ dependencies {
 }
 
 group = "ui.index.lib"
-version = "1.0.9"
+version = "1.1.1"
 
 
 
