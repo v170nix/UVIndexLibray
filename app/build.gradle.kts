@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -9,7 +11,6 @@ plugins {
 android {
 
     compileSdk = 33
-    buildToolsVersion = "33.0.1"
 
     defaultConfig {
         minSdk = 23
@@ -66,14 +67,14 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("androidx.appcompat:appcompat:1.6.0")
 //    implementation("com.google.android.material:material:1.6.1")
 
     implementation("com.github.v170nix:arwix-common-library:0.4.1")
 
-    implementation("androidx.room:room-runtime:2.5.0-rc01")
-    kapt("androidx.room:room-compiler:2.5.0-rc01")
-    implementation("androidx.room:room-ktx:2.5.0-rc01")
+    implementation("androidx.room:room-runtime:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0")
+    implementation("androidx.room:room-ktx:2.5.0")
 
 //    implementation("androidx.work:work-runtime-ktx:2.7.1")
 
@@ -89,7 +90,7 @@ dependencies {
 }
 
 group = "ui.index.lib"
-version = "1.0.8"
+version = "1.0.9"
 
 
 
