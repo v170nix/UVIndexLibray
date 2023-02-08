@@ -59,6 +59,14 @@ android {
 //    }
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.2")
 
