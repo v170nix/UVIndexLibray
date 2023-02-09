@@ -40,12 +40,8 @@ class CertOkHttpClient(
                 } else {
                     client.get(urlString, block).body()
                 }
-            } catch (e: Exception) {
-                if (e is SSLException && !isCertPathValidatorException) {
-                    isCertPathValidatorException = true
-                } else {
-                    throw e
-                }
+            } catch (e: SSLException) {
+                if (!isCertPathValidatorException) isCertPathValidatorException = true else throw e
             }
         }
     }
@@ -70,50 +66,44 @@ class CertOkHttpClient(
         // https://stackoverflow.com/questions/6825226/trust-anchor-not-found-for-android-ssl-connection
         @PublishedApi
         internal fun getUnsafeOkHttpClient(): OkHttpClient {
-            try {
-                val trustAllCerts = arrayOf<TrustManager>(
-                    @SuppressLint("CustomX509TrustManager")
-                    object : X509TrustManager {
+            val trustAllCerts = arrayOf<TrustManager>(
+                @SuppressLint("CustomX509TrustManager")
+                object : X509TrustManager {
 
-                        @SuppressLint("TrustAllX509TrustManager")
-                        @Throws(CertificateException::class)
-                        override fun checkClientTrusted(
-                            chain: Array<X509Certificate?>?,
-                            authType: String?
-                        ) {
-                        }
+                    @SuppressLint("TrustAllX509TrustManager")
+                    @Throws(CertificateException::class)
+                    override fun checkClientTrusted(
+                        chain: Array<X509Certificate?>?,
+                        authType: String?
+                    ) = Unit
 
-                        @SuppressLint("TrustAllX509TrustManager")
-                        @Throws(CertificateException::class)
-                        override fun checkServerTrusted(
-                            chain: Array<X509Certificate?>?,
-                            authType: String?
-                        ) {
-                        }
+                    @SuppressLint("TrustAllX509TrustManager")
+                    @Throws(CertificateException::class)
+                    override fun checkServerTrusted(
+                        chain: Array<X509Certificate?>?,
+                        authType: String?
+                    ) = Unit
 
-                        override fun getAcceptedIssuers(): Array<X509Certificate> {
-                            return arrayOf()
-                        }
+                    override fun getAcceptedIssuers(): Array<X509Certificate> {
+                        return arrayOf()
                     }
-                )
+                }
+            )
 
-                // Install the all-trusting trust manager
-                val sslContext = SSLContext.getInstance("SSL")
-                sslContext.init(
-                    null, trustAllCerts,
-                    java.security.SecureRandom()
-                )
+            // Install the all-trusting trust manager
+            val sslContext = SSLContext.getInstance("SSL")
+            sslContext.init(
+                null, trustAllCerts,
+                java.security.SecureRandom()
+            )
 
-                val sslSocketFactory: SSLSocketFactory = sslContext.socketFactory
+            val sslSocketFactory: SSLSocketFactory = sslContext.socketFactory
 
-                val builder = OkHttpClient.Builder()
-                builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
-                builder.hostnameVerifier { _, _ -> true }
+            val builder = OkHttpClient.Builder()
+            builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
+            builder.hostnameVerifier { _, _ -> true }
 
-                return builder.build()
-            } catch (e: Exception) {
-                throw RuntimeException()
-            }
+            return builder.build()
         }
     }
 }
