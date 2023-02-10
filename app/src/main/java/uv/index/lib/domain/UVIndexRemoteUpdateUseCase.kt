@@ -12,8 +12,7 @@ import uv.index.lib.data.UVIndexRepository
 import java.time.LocalDate
 
 class UVIndexRemoteUpdateUseCase(
-    private val repository: UVIndexRepository,
-    private val scope: CoroutineScope
+    private val repository: UVIndexRepository
 ) {
 
     private val _flow =
@@ -28,7 +27,9 @@ class UVIndexRemoteUpdateUseCase(
         workJob.cancel()
     }
 
-    fun update(place: UVIPlaceData?) {
+    fun update(
+        scope: CoroutineScope,
+        place: UVIPlaceData?) {
         if (place == null) {
             cancelUpdate()
             return
@@ -46,8 +47,9 @@ class UVIndexRemoteUpdateUseCase(
     }
 
     fun checkAndUpdate(
+        scope: CoroutineScope,
         place: UVIPlaceData?,
-        currentDayData: List<UVIndexData>?
+        currentDayData: List<UVIndexData>?,
     ) {
         if (place == null) {
             cancelUpdate()
@@ -59,7 +61,7 @@ class UVIndexRemoteUpdateUseCase(
                 place.longitude,
                 place.latitude
             ) || (currentDayData?.let { it.size < 23 } ?: true)
-            if (doUpdate) update(place)
+            if (doUpdate) update(this, place)
         }
 
     }
