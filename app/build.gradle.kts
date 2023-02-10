@@ -99,7 +99,7 @@ dependencies {
 }
 
 group = "ui.index.lib"
-version = "1.1.1"
+version = "1.1.2"
 
 
 
