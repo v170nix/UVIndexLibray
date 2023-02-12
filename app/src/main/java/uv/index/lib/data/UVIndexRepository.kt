@@ -56,6 +56,30 @@ class UVIndexRepository(
             .toList()
     }
 
+    fun getForecastDataAsFlow(
+        longitude: Double,
+        latitude: Double,
+        forecastDateAtStartDay: ZonedDateTime,
+        countDays: Int = 3
+    ): Flow<List<UVSummaryDayData>> {
+
+        val flows = buildList<Flow<List<UVIndexData>>> {
+            (0 until countDays).map {
+                dao.getUVIndexByLonLat(
+                    transformLongitudeToDb(longitude),
+                    transformLatitudeToDb(latitude),
+                    forecastDateAtStartDay.plusDays(1 + it.toLong()).toEpochSecond()
+                )
+            }
+        }
+
+        return combine(flows.toList()) { arrays ->
+            arrays.mapNotNull {
+                UVSummaryDayData.createFromDayList(forecastDateAtStartDay.zone, it)
+            }
+        }
+    }
+
     fun updateFromRemoteAsFlow(
         longitude: Double,
         latitude: Double,
