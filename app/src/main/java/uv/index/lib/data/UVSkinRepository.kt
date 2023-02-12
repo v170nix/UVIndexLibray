@@ -18,7 +18,7 @@ class UVSkinRepository(private val preferences: DataStore<Preferences>) {
         UVSkinType.values()[preferences?.get(NEW_PREF_KEY) ?: -1]
     }.getOrNull()
 
-    suspend fun getSkinOrNull(default: UVSkinType): UVSkinType = runCatching {
+    suspend fun getSkinOrDefault(default: UVSkinType): UVSkinType = runCatching {
         val preferences = preferences.data.firstOrNull()
         UVSkinType.values()[preferences?.get(NEW_PREF_KEY) ?: -1]
     }.getOrDefault(default)
