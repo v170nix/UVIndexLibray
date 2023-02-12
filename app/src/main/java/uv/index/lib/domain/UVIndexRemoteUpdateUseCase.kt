@@ -27,6 +27,7 @@ class UVIndexRemoteUpdateUseCase(
         workJob.cancel()
     }
 
+    @Suppress("MemberVisibilityCanBePrivate")
     fun update(
         scope: CoroutineScope,
         place: UVIPlaceData?) {
