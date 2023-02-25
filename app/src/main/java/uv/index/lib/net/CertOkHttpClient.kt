@@ -28,7 +28,7 @@ class CertOkHttpClient(
     internal val certClient by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         createClient(config, getUnsafeOkHttpClient())
     }
-    fun getClient(): HttpClient {
+    fun getHttpClient(): HttpClient {
         while (true) {
             try {
                 return if (isCertPathValidatorException) {
