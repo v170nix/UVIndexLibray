@@ -46,7 +46,7 @@ class CertOkHttpClient(
         urlString: String,
         block: HttpRequestBuilder.() -> Unit = {}
     ): T {
-        return getClient().get(urlString, block).body()
+        return getHttpClient().get(urlString, block).body()
 //        while (true) {
 //            try {
 //                return if (isCertPathValidatorException) {
