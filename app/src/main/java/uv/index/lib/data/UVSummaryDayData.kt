@@ -8,6 +8,7 @@ import java.time.ZoneId
 data class UVSummaryDayData(
     val day: LocalDate,
     val maxIndex: UVIndexData,
+    val hours: List<UVIndexData> ? = null,
     val timeProtectionBegin: LocalTime? = null,
     val timeProtectionEnd: LocalTime? = null
 ) {
@@ -19,7 +20,8 @@ data class UVSummaryDayData(
                 day = Instant.ofEpochSecond(list.first().time).atZone(zoneId).toLocalDate(),
                 maxIndex = list.maxByOrNull { it.value }!!,
                 timeProtectionBegin = times?.first,
-                timeProtectionEnd = times?.second
+                timeProtectionEnd = times?.second,
+                hours = list
             )
         }
     }
