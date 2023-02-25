@@ -28,22 +28,36 @@ class CertOkHttpClient(
     internal val certClient by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         createClient(config, getUnsafeOkHttpClient())
     }
-
-    suspend inline fun <reified T> get(
-        urlString: String,
-        block: HttpRequestBuilder.() -> Unit = {}
-    ): T {
+    fun getClient(): HttpClient {
         while (true) {
             try {
                 return if (isCertPathValidatorException) {
-                    certClient.get(urlString, block).body()
+                    certClient
                 } else {
-                    client.get(urlString, block).body()
+                    client
                 }
             } catch (e: SSLException) {
                 if (!isCertPathValidatorException) isCertPathValidatorException = true else throw e
             }
         }
+    }
+
+    suspend inline fun <reified T> get(
+        urlString: String,
+        block: HttpRequestBuilder.() -> Unit = {}
+    ): T {
+        return getClient().get(urlString, block).body()
+//        while (true) {
+//            try {
+//                return if (isCertPathValidatorException) {
+//                    certClient.get(urlString, block).body()
+//                } else {
+//                    client.get(urlString, block).body()
+//                }
+//            } catch (e: SSLException) {
+//                if (!isCertPathValidatorException) isCertPathValidatorException = true else throw e
+//            }
+//        }
     }
 
     companion object {

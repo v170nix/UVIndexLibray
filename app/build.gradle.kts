@@ -76,7 +76,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
 
     implementation("com.github.v170nix:arwix-common-library:0.4.1")
 
@@ -98,7 +98,7 @@ dependencies {
 }
 
 group = "ui.index.lib"
-version = "1.1.5"
+version = "1.1.6"
 
 afterEvaluate {
     publishing {
