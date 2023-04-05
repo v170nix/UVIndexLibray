@@ -4,7 +4,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
-    kotlin("plugin.serialization") version "1.8.0"
+    kotlin("plugin.serialization") version "1.8.10"
     `maven-publish`
 }
 
@@ -34,8 +34,8 @@ android {
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
@@ -73,23 +73,23 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
 
-    implementation("com.github.v170nix:arwix-common-library:0.4.1")
+    implementation("com.github.v170nix:arwix-common-library:0.4.3")
 
-    implementation("androidx.room:room-runtime:2.5.0")
-    kapt("androidx.room:room-compiler:2.5.0")
-    implementation("androidx.room:room-ktx:2.5.0")
+    implementation("androidx.room:room-runtime:2.5.1")
+    kapt("androidx.room:room-compiler:2.5.1")
+    implementation("androidx.room:room-ktx:2.5.1")
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
-    implementation("io.ktor:ktor-client-core:2.2.2")
-    implementation("io.ktor:ktor-client-okhttp:2.2.2")
-    implementation("io.ktor:ktor-client-content-negotiation:2.2.2")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.2.2")
+    implementation("io.ktor:ktor-client-core:2.2.4")
+    implementation("io.ktor:ktor-client-okhttp:2.2.4")
+    implementation("io.ktor:ktor-client-content-negotiation:2.2.4")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.2.4")
 //    implementation("io.ktor:ktor-client-serialization-jvm:2.0.3")
 
     testImplementation("junit:junit:4.13.2")
@@ -98,7 +98,7 @@ dependencies {
 }
 
 group = "ui.index.lib"
-version = "1.1.7"
+version = "1.1.8"
 
 afterEvaluate {
     publishing {

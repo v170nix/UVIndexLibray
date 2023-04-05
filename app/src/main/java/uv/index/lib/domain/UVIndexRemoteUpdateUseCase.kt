@@ -5,7 +5,7 @@ package uv.index.lib.domain
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import net.arwix.extension.ConflatedJob
+import net.arwix.coroutines.ConflatedJob
 import uv.index.lib.data.UVIPlaceData
 import uv.index.lib.data.UVIndexData
 import uv.index.lib.data.UVIndexRepository
